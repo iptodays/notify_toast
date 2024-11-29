@@ -2,7 +2,7 @@
  * @Author: A kingiswinter@gmail.com
  * @Date: 2024-11-28 22:15:24
  * @LastEditors: A kingiswinter@gmail.com
- * @LastEditTime: 2024-11-29 18:03:40
+ * @LastEditTime: 2024-11-29 18:58:16
  * @FilePath: /notify_toast/lib/notify_toast.dart
  * 
  * Copyright (c) 2024 by A kingiswinter@gmail.com, All Rights Reserved.
@@ -17,7 +17,7 @@ class NotifyToast {
 
   OverlayState? _overlayState;
 
-  final Map<String, OverlayEntry> _entrys = {};
+  OverlayEntry? _overlayEntry;
 
   NotifyToast._internal() {
     if (kDebugMode) {
@@ -35,8 +35,8 @@ class NotifyToast {
   }
 
   /// 显示Toast
-  String show({
-    BuildContext? context,
+  String show(
+    BuildContext context, {
     required Widget child,
     String? uniqueId,
     NotifyToastPosition position = NotifyToastPosition.top,
@@ -50,17 +50,12 @@ class NotifyToast {
     double progressHeight = 2,
     VoidCallback? onDismiss,
   }) {
-    if (_overlayState == null && context != null) {
-      _overlayState = Overlay.of(
-        context,
-      );
-    }
-    assert(
-      _overlayState != null,
-      'The context should be passed in on its first use.',
+    hide();
+    _overlayState ??= Overlay.of(
+      context,
     );
     String key = uniqueId ?? '${DateTime.now().millisecondsSinceEpoch}';
-    OverlayEntry overlayEntry = OverlayEntry(
+    _overlayEntry = OverlayEntry(
       builder: (_) {
         return NotifyToastView(
           uniqueId: key,
@@ -74,28 +69,22 @@ class NotifyToast {
           progressColor: progressColor,
           progressHeight: progressHeight,
           onDismiss: (uniqueId) {
-            hide(uniqueId);
+            hide();
             onDismiss?.call();
           },
           child: child,
         );
       },
     );
-    _entrys[key] = overlayEntry;
-    _overlayState?.insert(overlayEntry);
+    _overlayState?.insert(_overlayEntry!);
     return key;
   }
 
   /// 隐藏
-  void hide(String uniqueId) {
-    _entrys[uniqueId]?.remove();
-  }
-
-  /// 隐藏所有
-  void hideAll() {
-    for (var element in _entrys.values) {
-      element.remove();
+  void hide() {
+    if (_overlayState != null && _overlayEntry != null) {
+      _overlayEntry?.remove();
+      _overlayEntry = null;
     }
-    _entrys.clear();
   }
 }

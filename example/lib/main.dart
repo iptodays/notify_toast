@@ -2,7 +2,7 @@
  * @Author: A kingiswinter@gmail.com
  * @Date: 2024-11-29 17:02:35
  * @LastEditors: A kingiswinter@gmail.com
- * @LastEditTime: 2024-11-29 17:10:11
+ * @LastEditTime: 2024-11-29 18:52:05
  * @FilePath: /notify_toast/example/lib/main.dart
  * 
  * Copyright (c) 2024 by A kingiswinter@gmail.com, All Rights Reserved.
@@ -79,24 +79,40 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               onPressed: () {
                 NotifyToast().show(
-                  bgColor: Colors.green,
+                  context,
+                  bgColor: Colors.green.withOpacity(0.6),
+                  progressColor: Colors.blueGrey,
+                  progressHeight: 4,
                   child: Container(
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).padding.top + 16,
                       bottom: 24,
                     ),
-                    child: const Text(
-                      'NotifyToast',
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          child: Text(
+                            'NotifyToast',
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            NotifyToast().hide();
+                          },
+                          icon: const Icon(
+                            Icons.close_rounded,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  context: context,
                 );
               },
               child: Text('Show'),
             ),
             TextButton(
               onPressed: () {
-                NotifyToast().hideAll();
+                NotifyToast().hide();
               },
               child: Text('Hide'),
             ),

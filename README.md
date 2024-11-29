@@ -6,7 +6,7 @@
 
 ```yaml
 dependencies:
-  notify_toast: 0.0.1
+  notify_toast: 0.0.3
 ```
 
 ### Import it
@@ -19,7 +19,32 @@ import 'package:notify_toast/notify_toast.dart';
 
 ```dart
 NotifyToast().show(
-  context: context,
-  child: Text('notify_toast'),
+  context,
+  bgColor: Colors.green.withOpacity(0.6),
+  progressColor: Colors.blueGrey,
+  progressHeight: 4,
+  child: Container(
+    padding: EdgeInsets.only(
+    top: MediaQuery.of(context).padding.top + 16,
+    bottom: 24,
+  ),
+    child: Row(
+      children: [
+        const Expanded(
+          child: Text(
+            'NotifyToast',
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            NotifyToast().hide();
+          },
+          icon: const Icon(
+            Icons.close_rounded,
+          ),
+        ),
+      ],
+    ),
+  ),
 );
 ```
