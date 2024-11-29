@@ -2,7 +2,7 @@
  * @Author: A kingiswinter@gmail.com
  * @Date: 2024-11-29 17:02:35
  * @LastEditors: A kingiswinter@gmail.com
- * @LastEditTime: 2024-11-29 18:52:05
+ * @LastEditTime: 2024-11-29 19:03:29
  * @FilePath: /notify_toast/example/lib/main.dart
  * 
  * Copyright (c) 2024 by A kingiswinter@gmail.com, All Rights Reserved.
@@ -108,13 +108,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 );
               },
-              child: Text('Show'),
+              child: const Text('Show'),
             ),
             TextButton(
               onPressed: () {
                 NotifyToast().hide();
               },
-              child: Text('Hide'),
+              child: const Text('Hide'),
             ),
           ],
         ),
