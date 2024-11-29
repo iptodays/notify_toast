@@ -1,0 +1,21 @@
+name: notify_toast
+description: notify the alert
+version: 0.0.1
+homepage: https://github.com/iptodays/notify_toast
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # https://pub.dev/packages/blurrycontainer
+  blurrycontainer: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
