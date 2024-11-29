@@ -2,8 +2,8 @@
  * @Author: A kingiswinter@gmail.com
  * @Date: 2024-11-28 22:15:24
  * @LastEditors: A kingiswinter@gmail.com
- * @LastEditTime: 2024-11-29 14:50:28
- * @FilePath: /stripey/notify_toast/lib/notify_toast.dart
+ * @LastEditTime: 2024-11-29 18:03:40
+ * @FilePath: /notify_toast/lib/notify_toast.dart
  * 
  * Copyright (c) 2024 by A kingiswinter@gmail.com, All Rights Reserved.
  */
